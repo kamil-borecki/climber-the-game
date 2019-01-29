@@ -15,20 +15,20 @@ MonoBehaviour:
   currentLevel: 0
   levelSettings:
   - sceneName: cutscene
-    stepsCount: 20
+    stepsCount: 50
     spaceBeetwenSteps: 2
     stepsDistanceFactor: 2.5
     routeWidth: 2.5
     routeWidthFactor: 2
   - sceneName: level1
-    stepsCount: 20
+    stepsCount: 50
     spaceBeetwenSteps: 2
     stepsDistanceFactor: 2.5
     routeWidth: 2.5
     routeWidthFactor: 2
   - sceneName: level2
-    stepsCount: 20
-    spaceBeetwenSteps: 2
+    stepsCount: 100
+    spaceBeetwenSteps: 3.5
     stepsDistanceFactor: 2.5
     routeWidth: 2.5
     routeWidthFactor: 2
