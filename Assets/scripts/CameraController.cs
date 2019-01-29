@@ -22,16 +22,16 @@ public class CameraController : MonoBehaviour
         if (newYPos > 0f )
         {
             float step = speed * Time.deltaTime;
-            Vector2 targetPos = new Vector2(transform.position.x, newYPos);
-            transform.position = Vector2.Lerp(transform.position, targetPos, step);
+            Vector3 targetPos = new Vector3(transform.position.x, newYPos, -0.4f);
+            transform.position = Vector3.Lerp(transform.position, targetPos, step);
 
         }
         float playerX = player.transform.position.x;
         if(playerX < offset && playerX > -offset)
         {
             float step = speed/2 * Time.deltaTime;
-            Vector2 targetPos2 = new Vector2(playerX, transform.position.y);
-            transform.position = Vector2.Lerp(transform.position, targetPos2, step);
+            Vector3 targetPos2 = new Vector3(playerX, transform.position.y, -0.4f);
+            transform.position = Vector3.Lerp(transform.position, targetPos2, step);
         }
       
     }

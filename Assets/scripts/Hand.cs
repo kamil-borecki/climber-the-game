@@ -16,8 +16,6 @@ public class Hand : MonoBehaviour
     public bool isGrabbed = false;
     public bool isRaised = false;
 
-    public State state;
-
     void Start()
     {
         rigid = this.GetComponent<Rigidbody2D>();
@@ -83,6 +81,7 @@ public class Hand : MonoBehaviour
         if (isGrab && isOverShelf && !isGrabbed)
         {
             isGrabbed = true;
+            FindObjectOfType<Player>().GetComponent<AudioSource>().Play();
             rigid.constraints = RigidbodyConstraints2D.FreezePosition;
            
                playerController.SetGrabbed(isLeft);

@@ -8,7 +8,7 @@ public class ChangeScene : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D colider)
     {
-        // TODO SETUP TAG ON CORPSE
+      
         if (colider.tag == "Player")
         {
             Debug.Log(colider.tag);

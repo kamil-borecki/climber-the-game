@@ -7,12 +7,11 @@ public class StepsSpawner : MonoBehaviour
     public State state;
 
     private int stepsCount;
-    private int stepsVariations;
     private float stepDistance;
     private float stepDistanceRandomFactor;
     private float routeWidth;
     private float routeWidthRandomFactor;
-    private string currentLevel;
+    public List<GameObject> stepsVariants;
 
     private GameObject finishLine;
 
@@ -24,14 +23,8 @@ public class StepsSpawner : MonoBehaviour
 
     void Awake()
     {
-        if (state.currentLevel == 0)
-        {
-            state.currentLevel = 1;
-        }
-
-        SetupLevel(state.levels[state.currentLevel-1]);
-        currentLevel = state.currentLevel.ToString();
-        CreateSteps();
+      SetupLevel(state.levels[state.currentLevel]);
+      CreateSteps();
     }
 
     void Update()
@@ -46,7 +39,6 @@ public class StepsSpawner : MonoBehaviour
     private void SetupLevel(Level level)
     {
         stepsCount = level.stepsCount;
-        stepsVariations = level.stepsVariations;
         stepDistance = level.stepDistance;
         stepDistanceRandomFactor = level.stepDistanceRandomFactor;
         routeWidth = level.routeWidth;
@@ -83,10 +75,8 @@ public class StepsSpawner : MonoBehaviour
 
     private GameObject CreateStep()
     {
-        string url = "lvl" + currentLevel + "/steps/" + Random.Range(1, stepsVariations+1).ToString();
-        var tempObj = Instantiate(Resources.Load(url, typeof(GameObject)) as GameObject);
+        var tempObj = Instantiate(stepsVariants[Random.Range(0, stepsVariants.Count)]);
         tempObj.transform.SetParent(gameObject.transform);
-
         return tempObj;
     }
 

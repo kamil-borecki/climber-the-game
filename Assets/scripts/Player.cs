@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     public float xPower = 200f;
     public float yPower = 200f;
     public State state;
-    public string cutSceneName = "cutscene";
     private ConstantForce2D force;
     private PlayerController playerController;
     private Rigidbody2D rigid;
@@ -68,14 +67,10 @@ public class Player : MonoBehaviour
     {
         if(collision.tag == "end")
         {
-            Debug.Log(collision.tag);
-            state.currentLevel = 0;
-            state.nextLevel = 1;
-            SceneManager.LoadSceneAsync(cutSceneName);
+            SceneManager.LoadSceneAsync("title");
         }
         if(collision.tag == "endThing")
         {
-            Debug.Log(collision.tag);
             playerController.leftHandRef.isGrabbed = false;
             playerController.rightHandRef.isGrabbed = false;
         }

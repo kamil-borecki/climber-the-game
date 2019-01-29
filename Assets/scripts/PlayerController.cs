@@ -11,18 +11,21 @@ public class PlayerController : MonoBehaviour
     public Hand leftHandRef, rightHandRef;
     public float scrollSpeed = -1.5f;
     public List<int> remoteUsers;
+    public State state;
+    public int level = 1;
     private void Awake()
     {
         //AirConsole.instance.onMessage += OnMessage;
         //AirConsole.instance.onConnect += OnConnect;
         //AirConsole.instance.onDisconnect += OnDisconnect;
+        state.currentLevel = level;
     }
     private void OnConnect(int device_id)
     {
         //Log to on-screen Console
         remoteUsers.Add(device_id);
         sendMessageToDevices();
-       
+        
 
     }
 
@@ -39,7 +42,7 @@ public class PlayerController : MonoBehaviour
             leftHandRef.isGrabbed = true;
             if(rightHandRef.transform.position.y < leftHandRef.transform.position.y)
             {
-                GetComponent<CameraController>().newYPos = leftHandRef.transform.position.y + 3f;
+                GetComponent<CameraController>().newYPos = leftHandRef.transform.position.y + 2f;
             }
         }
         else
@@ -47,7 +50,7 @@ public class PlayerController : MonoBehaviour
             rightHandRef.isGrabbed = true;
             if (rightHandRef.transform.position.y > leftHandRef.transform.position.y)
             {
-                GetComponent<CameraController>().newYPos = rightHandRef.transform.position.y + 3f;
+                GetComponent<CameraController>().newYPos = rightHandRef.transform.position.y + 2f;
             }
         }
     }
@@ -85,6 +88,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("quit");
+
+            Application.Quit();
+        }
 
         if (remoteUsers.Count == 0)
         {
@@ -92,10 +101,10 @@ public class PlayerController : MonoBehaviour
         right = left = leftHandRef.isRaised = rightHandRef.isRaised = false;
             left |= Input.GetKey("a");
             right |= Input.GetKey("d");
-            leftHandRef.isRaised |= Input.GetKey("k");
+            leftHandRef.isRaised |= Input.GetKey("j");
             rightHandRef.isRaised |= Input.GetKey("l");
 
-            if (Input.GetKeyUp("k"))
+            if (Input.GetKeyUp("j"))
             {
                 leftHandRef.BroadcastMessage("HandEnd");
             }

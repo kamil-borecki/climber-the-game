@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RepeatingBackground : MonoBehaviour
 {
-    public Camera camera;
+    public Camera cam;
     private BoxCollider2D groundCollider;
     private float groundHeight;
 
@@ -23,7 +23,7 @@ public class RepeatingBackground : MonoBehaviour
 
     void OnBecameInvisible()
     {
-        if(camera.transform.position.y > transform.position.y)
+        if(cam.transform.position.y > transform.position.y)
         {
             transform.position = new Vector2(transform.position.x, transform.position.y + groundHeight * 2f);
         }
